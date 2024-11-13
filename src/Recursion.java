@@ -2,6 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recursion {
+    /*
+    Patterns:
+    1)Print All -> Param wise
+    2)Print 1 -> return T/F  & AVOID further recursion calls if we get True
+    3)Count -> return 1 for condition success or return 0 for failure #If already made print all then have to remove any additional DS
+        Add all function calls and return#Example below [//Printing any subsequence whose sum is K#Want only count of subsequences]
+    */
 
     static String reverseStr(String str) {
         if (str.length() == 1) {
