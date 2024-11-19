@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Graph {
 
@@ -18,8 +20,31 @@ public class Graph {
         }
     }
 
+    //Level Wise Traversal#BFS
+    static void bfs(List<List<Integer>> adj){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        boolean vis[] = new boolean[adj.size()+1];
+        vis[1]= true;
+
+        while(!q.isEmpty()){
+            Integer val = q.poll();
+            System.out.println(val);
+
+            for(int i =0;i<adj.get(val).size();i++){
+                int index = adj.get(val).get(i);
+                if(!vis[index])
+                {
+                    q.add(index);
+                    vis[index]=true;
+                }
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
-        int n = 5, m = 3;
+        int n = 8, m = 3;
         List<List<Integer>> adj = new ArrayList<>();
 
         //n+1 elements
@@ -27,14 +52,24 @@ public class Graph {
             adj.add(new ArrayList<Integer>());
         }
 
-        addEdge(adj, 1, 2);
+        /*addEdge(adj, 1, 2);
         addEdge(adj, 1, 3);
         addEdge(adj, 2, 4);
         addEdge(adj, 2, 5);
         addEdge(adj, 3, 4);
-        addEdge(adj, 4, 5);
+        addEdge(adj, 4, 5);*/
 
-        printGraph(adj, n);
+        addEdge(adj, 1, 2);
+        addEdge(adj, 1, 6);
+        addEdge(adj, 2, 3);
+        addEdge(adj, 2, 4);
+        addEdge(adj, 6, 7);
+        addEdge(adj, 6, 8);
+        addEdge(adj, 4, 5);
+        addEdge(adj, 7, 5);
+
+        bfs(adj);
+        //printGraph(adj, n);
     }
 
 }
