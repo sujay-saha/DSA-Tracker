@@ -21,30 +21,41 @@ public class Graph {
     }
 
     //Level Wise Traversal#BFS
-    static void bfs(List<List<Integer>> adj){
+    static void bfs(List<List<Integer>> adj) {
         Queue<Integer> q = new LinkedList<>();
         q.add(1);
-        boolean vis[] = new boolean[adj.size()+1];
-        vis[1]= true;
+        boolean vis[] = new boolean[adj.size() + 1];
+        vis[1] = true;
 
-        while(!q.isEmpty()){
+        while (!q.isEmpty()) {
             Integer val = q.poll();
             System.out.println(val);
 
-            for(int i =0;i<adj.get(val).size();i++){
+            for (int i = 0; i < adj.get(val).size(); i++) {
                 int index = adj.get(val).get(i);
-                if(!vis[index])
-                {
+                if (!vis[index]) {
                     q.add(index);
-                    vis[index]=true;
+                    vis[index] = true;
                 }
+            }
+        }
+    }
+
+    static void dfs(int node, List<List<Integer>> adj, boolean vis[], List<Integer> dfsList) {
+
+        vis[node] = true;
+        dfsList.add(node);
+        
+        for (Integer val : adj.get(node)) {
+            if (!vis[val]) {
+                dfs(val, adj, vis, dfsList);
             }
         }
 
     }
 
     public static void main(String[] args) {
-        int n = 8, m = 3;
+        int n = 9, m = 3;
         List<List<Integer>> adj = new ArrayList<>();
 
         //n+1 elements
@@ -58,7 +69,7 @@ public class Graph {
         addEdge(adj, 2, 5);
         addEdge(adj, 3, 4);
         addEdge(adj, 4, 5);*/
-
+       /* //bfs
         addEdge(adj, 1, 2);
         addEdge(adj, 1, 6);
         addEdge(adj, 2, 3);
@@ -66,9 +77,28 @@ public class Graph {
         addEdge(adj, 6, 7);
         addEdge(adj, 6, 8);
         addEdge(adj, 4, 5);
-        addEdge(adj, 7, 5);
+        addEdge(adj, 7, 5);*/
 
-        bfs(adj);
+        //DFS LIST
+        addEdge(adj, 1, 2);
+        addEdge(adj, 1, 3);
+        addEdge(adj, 2, 5);
+        addEdge(adj, 2, 6);
+        addEdge(adj, 3, 4);
+        addEdge(adj, 3, 7);
+        addEdge(adj, 4, 8);
+        addEdge(adj, 7, 8);
+
+        //bfs(adj);
+
+        boolean vis[] = new boolean[adj.size()];
+        vis[1] = true;
+        List<Integer> dfsTraversalList = new ArrayList<>();
+        dfs(1, adj, vis, dfsTraversalList);
+        System.out.println("DFS Traversal:");
+        for (Integer val : dfsTraversalList) {
+            System.out.print(val + " ");
+        }
         //printGraph(adj, n);
     }
 
