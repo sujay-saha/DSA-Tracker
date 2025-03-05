@@ -1,10 +1,6 @@
 package arraysPrac;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class Prac1 {
 
@@ -63,13 +59,35 @@ public class Prac1 {
         return new ArrayList(anagramsMap.values());
     }
 
+    public static int[] topKFrequent(int[] nums, int k) {
+        int []res=new int[k];
+        Map<Integer,Integer> elementCount = new HashMap<>();
+        for(int num:nums){
+            elementCount.put(num, elementCount.getOrDefault(num,0)+1);
+        }
+
+        Map<Integer,Integer> orderedCount = new LinkedHashMap<>();
+        elementCount.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEachOrdered(x->orderedCount.put(x.getKey(),x.getValue()));
+
+        for(int i : orderedCount.keySet()){
+            res[res.length-(k--)]=i;
+            if(k==0){
+                break;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         /*Left Rotate the array by one place*/
 
-        System.out.println(Arrays.toString(sortColors(new int[]{2,0,2,1,1,0})));
+        System.out.println("Sort Colors [0,1,2]:"+Arrays.toString(sortColors(new int[]{2,0,2,1,1,0})));
 
         List<List<String>> groupAnagrams =groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"});
         System.out.println(Arrays.toString(groupAnagrams.toArray()));
+
+        int k=2;
+        System.out.println("TopKElements:"+Arrays.toString(topKFrequent(new int[]{1,1,1,2,2,3},k)));
         /*int arr[] ={1,2,3,4,5};//54321
         int rotations=3;
         int actualToRotate = rotations%arr.length;
