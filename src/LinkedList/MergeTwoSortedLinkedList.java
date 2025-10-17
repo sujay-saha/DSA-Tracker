@@ -4,10 +4,10 @@ public class MergeTwoSortedLinkedList {
 
     public class ListNode {
         int val;
-        ReverseLinkedList.ListNode next;
+        MergeTwoSortedLinkedList.ListNode next;
         ListNode() {}
         ListNode(int val) { this.val = val; }
-        ListNode(int val, ReverseLinkedList.ListNode next) { this.val = val; this.next = next; }
+        ListNode(int val, MergeTwoSortedLinkedList.ListNode next) { this.val = val; this.next = next; }
     }
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {

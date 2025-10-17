@@ -1,6 +1,7 @@
 package streamsJava;
 import java.sql.SQLOutput;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 class Employee{
@@ -57,6 +58,13 @@ public class StreamExplorer {
                 .forEach(System.out::println);
         System.out.println("----------------------Employees");
         employeeStreamExamples();
+
+        int arr[] = {1,3,2,5,8,9,9};
+
+        Map<Integer, List<Integer>> groupedByValue = Arrays.stream(arr).boxed().collect(Collectors.groupingBy(x->x));
+        System.out.println("Grouping-----------\n"+groupedByValue);
+        Map<Integer, Long> groupedByValue2 = Arrays.stream(arr).boxed().collect(Collectors.groupingBy(x->x,Collectors.counting()));
+        System.out.println("Grouping with count-----------\n"+groupedByValue2);
     }
 
     public static void employeeStreamExamples(){

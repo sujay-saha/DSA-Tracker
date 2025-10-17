@@ -19,8 +19,8 @@ public class DetectLoopLinkedList {
         ListNode fNode = head;
 
         while(fNode.next!=null && fNode.next.next!=null){
-            sNode = sNode.next;
-            fNode = fNode.next.next;
+            //sNode = sNode.next;
+            //fNode = fNode.next.next;
             if(fNode==sNode){
                 return true;
             }

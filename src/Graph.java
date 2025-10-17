@@ -41,7 +41,7 @@ public class Graph {
         }
     }
 
-    static void dfs(int node, List<List<Integer>> adj, boolean vis[], List<Integer> dfsList) {
+    /*static void dfs(int node, List<List<Integer>> adj, boolean vis[], List<Integer> dfsList) {
 
         vis[node] = true;
         dfsList.add(node);
@@ -52,7 +52,7 @@ public class Graph {
             }
         }
 
-    }
+    }*/
 
     public static void main(String[] args) {
         int n = 9, m = 3;
@@ -69,8 +69,8 @@ public class Graph {
         addEdge(adj, 2, 5);
         addEdge(adj, 3, 4);
         addEdge(adj, 4, 5);*/
-       /* //bfs
-        addEdge(adj, 1, 2);
+       //bfs
+        /*addEdge(adj, 1, 2);
         addEdge(adj, 1, 6);
         addEdge(adj, 2, 3);
         addEdge(adj, 2, 4);
@@ -80,6 +80,7 @@ public class Graph {
         addEdge(adj, 7, 5);*/
 
         //DFS LIST
+
         addEdge(adj, 1, 2);
         addEdge(adj, 1, 3);
         addEdge(adj, 2, 5);
@@ -92,14 +93,49 @@ public class Graph {
         //bfs(adj);
 
         boolean vis[] = new boolean[adj.size()];
-        vis[1] = true;
+        //vis[1] = true;
         List<Integer> dfsTraversalList = new ArrayList<>();
-        dfs(1, adj, vis, dfsTraversalList);
+        //dfs(1, adj, vis, dfsTraversalList);
         System.out.println("DFS Traversal:");
-        for (Integer val : dfsTraversalList) {
+       /* for (Integer val : dfsTraversalList) {  //1 2 5 6 3 4 8 7
             System.out.print(val + " ");
-        }
+        }*/
         //printGraph(adj, n);
+
+
+        //bfs(1,adj,vis,new LinkedList<Integer>());
+
+        dfs(1, adj, vis, new LinkedList<Integer>());
+    }
+
+    public static void bfs(int startNode,List<List<Integer>> adj,boolean vis[],Queue<Integer> queue){
+       queue.add(startNode);
+       vis[startNode]=true;
+
+       while(!queue.isEmpty()){
+           Integer nodeVal = queue.poll();
+           System.out.print(nodeVal+" ");
+
+           for(Integer val: adj.get(nodeVal)){
+               if(!vis[val]){
+                   queue.add(val);
+                   vis[val]=true;
+               }
+           }
+       }
+
+    }
+
+
+    public static void dfs(int node,List<List<Integer>> adj,boolean vis[],Queue<Integer> queue){
+        queue.add(node);
+        System.out.print(node+" ");
+        vis[node]=true;
+        for(Integer val: adj.get(node)){
+            if(!vis[val]){
+                dfs(val,adj,vis,queue);
+            }
+        }
     }
 
 }
