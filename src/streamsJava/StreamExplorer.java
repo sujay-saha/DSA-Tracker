@@ -14,6 +14,10 @@ class Employee{
         this.employeeName = employeeName;
         this.age = age;
     }
+    @Override
+    public String toString(){
+        return "Id: "+this.employeeId+" _ Name: "+this.employeeName+" _ Age: "+this.age+" ";
+    }
 
     public int getEmployeeId() {
         return employeeId;
@@ -75,8 +79,11 @@ public class StreamExplorer {
                 new Employee(4,"D",28),
                 new Employee(5,"E",35)
         ));
+        System.out.println("-----------------------NOW-------------------------------");
         Map<Integer,List<Employee>> ageMap =employeesList.stream()
                 .collect(Collectors.groupingBy(employee -> employee.getAge()));
+        ageMap.entrySet().stream().forEach((entry)->{if(entry.getKey()>30)
+            System.out.println(entry.getValue());});
         List<Employee> sortedemployeesList =employeesList.stream()
                                                          .sorted((n,o)->n.getAge()-o.getAge())
                                                          .collect(Collectors.toList());
