@@ -1,8 +1,9 @@
 package arraysPrac;
 
-public class StockSpanner {
+import java.util.ArrayList;
+import java.util.List;
 
-    class StockSpanner {
+public class StockSpanner {
         int maxPrice= Integer.MIN_VALUE;
 
         List<Integer> stocksTillToday;
@@ -24,7 +25,7 @@ public class StockSpanner {
             }
             return count;
         }
-    }
+
 
 /**
  * Your StockSpanner object will be instantiated and called as such:
